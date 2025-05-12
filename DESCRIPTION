@@ -7,7 +7,12 @@ Authors@R: c(
     person("Pattern Institute", role = c("cph", "fnd"),
            comment = c("https://www.pattern.institute", ROR = "04jrgd746"))
   )
-Description: What the package does (one paragraph).
+Description: 
+  Tools for representing, organizing, and analyzing diagnostic and staging
+  information related to Alzheimer's disease. Supports structured workflows for
+  combining clinical, biological, and other staging variables in a consistent
+  and reproducible manner. Intended for use in research, data harmonization,
+  and interpretation of disease progression frameworks.
 License: AGPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
