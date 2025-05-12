@@ -1,0 +1,14 @@
+Package: alz
+Title: Criteria for Diagnosis and Staging of Alzheimer's Disease
+Version: 0.0.1
+Authors@R: c(
+    person("Ramiro", "Magno", , "rmagno@pattern.institute", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-5226-3441")),
+    person("Pattern Institute", role = c("cph", "fnd"),
+           comment = c("https://www.pattern.institute", ROR = "04jrgd746"))
+  )
+Description: What the package does (one paragraph).
+License: AGPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
