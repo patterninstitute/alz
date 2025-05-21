@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# alz
+# alz <a href="https://www.pattern.institute/alz/"><img src="man/figures/logo.svg" align="right" height="139" alt="alz website" /></a>
 
 <!-- badges: start -->
 

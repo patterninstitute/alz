@@ -8,3 +8,6 @@
 ^\.github$
 ^README\.Rmd$
 ^CODE_OF_CONDUCT\.md$
+^vignettes/articles$
+^data-raw$
+^assay-docs$

@@ -1,0 +1,89 @@
+---
+title: "Redefining Alzheimer's: From Symptoms to Biomarkers"
+bibliography: references.bib  
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## McKhann et al. (1984): The clinical turn
+
+In a landmark consensus paper, @McKhann.N.1984 established the first widely
+adopted clinical diagnostic criteria for Alzheimer's Disease (AD) under the
+joint auspices of the National Institute of Neurological and Communicative
+Disorders and Stroke (NINCDS)^[Now called [National Institute of Neurological
+Disorders and Stroke (NINDS)](https://www.ninds.nih.gov/)] and the Alzheimer’s
+Disease and Related Disorders Association (ADRDA)^[Now called [Alzheimer's
+Association (AA)](https://www.alz.org/)].
+
+Briefly, these criteria introduced a three-tier classification system,
+reflecting increasing levels of diagnostic certainty:
+
+- **Possible AD**: cases with atypical features or the presence of comorbid
+conditions that could contribute to dementia, but where Alzheimer's disease
+remains a likely diagnosis;
+
+- **Probable AD**: a clinical diagnosis based on insidious onset and progressive
+memory and cognitive decline, in the absence of alternative explanations^[Among
+the disorders that must be excluded are manic-depressive disorder, Parkinson's,
+disease, multi-infarct dementia, and drug intoxication; less commonly
+encountered disorders that may cause dementia include thyroid disease,
+pernicious anemia, luetic brain disease and other chronic infections of the
+nervous system, subdural hematoma, occult hydrocephalus, Huntington’s disease,
+Creutzfeldt-Jakob disease, and brain tumors.];
+
+- **Definite AD**: requires all the criteria for **Probable AD**, combined with
+histopathological confirmation of Alzheimer’s-specific brain lesions at
+autopsy or biopsy.
+
+Although grounded in clinical observation, the framework acknowledged the
+absence of specific biomarkers and the high misclassification rate^[20% or more
+of cases with the clinical diagnosis of Alzheimer’s disease are found at autopsy
+to have other conditions and not Alzheimer’s disease.] in clinical practice.
+
+## Blacker et al. (1994): Toward refining diagnostic accuracy
+
+@Blacker.AoN.1994 conducted a multisite study to evaluate the reliability
+and validity of the NINCDS-ADRDA diagnostic criteria for Alzheimer's disease
+(AD), originally proposed in [@McKhann.N.1984]. Using autopsy-confirmed
+diagnoses as the gold standard, the study assessed how well clinicians across
+three academic centers could classify 60 cases (AD and non-AD) based on detailed
+clinical summaries.
+
+The findings supported moderate inter-rater reliability and good post-consensus
+validity of the criteria, but also revealed important diagnostic
+limitations—especially in atypical presentations.
+
+Key recommendations for refining the criteria:
+
+1. Early behavioral symptoms (e.g. personality change, disinhibition) were often
+associated with non-AD pathologies, such as Pick's disease or hippocampal
+sclerosis. The authors suggested that such cases should not be classified as
+probable or possible AD under future criteria.
+
+2. Prominent early language dysfunction (e.g. progressive aphasia) also
+frequently corresponded to non-AD pathology. The authors proposed these cases
+be diagnosed as possible AD only, and only when otherwise typical.
+
+3. The distinction between probable and possible AD showed little difference in
+predictive value, questioning the usefulness of treating them as hierarchically
+distinct in terms of diagnostic certainty.
+
+4. The study highlighted the need for greater clarity in temporal relationships
+between cognitive decline and co-occurring neurological or psychiatric symptoms,
+as this was a common source of diagnostic error.
+
+5 The authors advocated for future formal revisions of the criteria to
+incorporate these observations—many of which were already reflected in the
+clinical judgment of experienced diagnosticians.
+
+This work laid the groundwork for future revisions of AD diagnostic frameworks,
+including the NIA-AA criteria and the AT(N) biomarker model, by underscoring the
+limits of symptom-based classification and the need to refine criteria for
+atypical and mixed presentations.
+
+## References

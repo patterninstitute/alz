@@ -19,4 +19,6 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 URL: https://www.pattern.institute/alz/, https://github.com/patterninstitute/alz
 BugReports: https://github.com/patterninstitute/alz/issues
-Config/Needs/website: patterninstitute/chic
+Config/Needs/website: patterninstitute/chic, rmarkdown
+Imports: 
+    readr

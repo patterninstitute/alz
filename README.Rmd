@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# alz
+# alz <a href="https://www.pattern.institute/alz/"><img src="man/figures/logo.svg" align="right" height="139" alt="alz website" /></a>
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/alz)](https://CRAN.R-project.org/package=alz)
