@@ -1,4 +1,4 @@
-#' Alzheimer's Disease Analytes
+#' Alzheimer's disease analytes
 #'
 #' Returns a tibble containing curated metadata for directly measurable analytes
 #' relevant to Alzheimer's disease research. This includes amyloid beta peptides,

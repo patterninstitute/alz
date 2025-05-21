@@ -16,7 +16,7 @@ upper, limits of quantification.
 }
 \description{
 \code{\link[=loq]{loq()}} is a convenience function that retrieves the limits of quantification
-from one of the methods in \code{\link[=assays]{assays()}}.
+from one of the assays in \code{\link[=assays]{assays()}}.
 }
 \examples{
 # Limits of quantification of Fujirebio INNOTEST β-Amyloid(1-42) CSF ELISA

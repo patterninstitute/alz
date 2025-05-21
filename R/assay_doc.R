@@ -22,6 +22,6 @@ assay_doc_url <- function(assay_id) {
 #'
 #' @export
 assay_doc <- function(assay_id) {
-  browseURL(url = assay_doc_url(assay_id = assay_id))
+  utils::browseURL(url = assay_doc_url(assay_id = assay_id))
   invisible(TRUE)
 }

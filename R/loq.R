@@ -1,7 +1,7 @@
 #' Limits of quantification per method
 #'
 #' [loq()] is a convenience function that retrieves the limits of quantification
-#' from one of the methods in [assays()].
+#' from one of the assays in [assays()].
 #'
 #' @param assay_id A method identifier. One of the values in the `assay_id`
 #' variable in [assays()].

@@ -2,7 +2,7 @@
 % Please edit documentation in R/analytes.R
 \name{analytes}
 \alias{analytes}
-\title{Alzheimer's Disease Analytes}
+\title{Alzheimer's disease analytes}
 \usage{
 analytes()
 }
