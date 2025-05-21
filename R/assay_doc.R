@@ -1,5 +1,5 @@
 assay_doc_url <- function(assay_id) {
-  base_url <- "https://raw.githubusercontent.com/patterninstitute/alz/main"
+  base_url <- "https://raw.githubusercontent.com/patterninstitute/alz/main/assay-docs"
   filename <- paste0(assay_id, ".pdf")
   file.path(base_url, filename)
 }
