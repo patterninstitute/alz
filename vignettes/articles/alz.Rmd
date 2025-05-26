@@ -28,8 +28,7 @@ Each of these concepts plays a distinct role in the biomarker data model.
 
 ## Analytes
 
-An *analyte* is the molecular species being quantified in a biological matrix
-(e.g. CSF, plasma). Examples include:
+An *analyte* is the molecular species being quantified. Examples include:
 
 - Aβ42 (amyloid beta 1–42)
 - p-tau181 (tau phosphorylated at threonine 181)

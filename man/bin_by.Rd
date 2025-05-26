@@ -14,7 +14,7 @@ cut-points.}
 }
 \value{
 A factor with levels \code{"-"}, \code{"+"}, or \code{"-"}, \code{"~"}, \code{"+"} depending
-on the number of cutpts.
+on the number of \code{cutpts}.
 }
 \description{
 \code{\link[=bin_by]{bin_by()}} converts numeric biomarker values to diagnostic categories using

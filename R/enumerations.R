@@ -16,3 +16,15 @@ enum_syndromic_stages <- function() {
     "severe dementia"
   )
 }
+
+enum_matrices <- function() {
+  c(
+    "plasma",
+    "serum",
+    "blood",
+    "cerebrospinal fluid",
+    "brain",
+    "urine",
+    "saliva"
+    )
+}

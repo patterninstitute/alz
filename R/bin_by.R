@@ -45,7 +45,7 @@ bins <- function(n = 2) {
 #'   cut-points.
 #'
 #' @return A factor with levels `"-"`, `"+"`, or `"-"`, `"~"`, `"+"` depending
-#'   on the number of cutpts.
+#'   on the number of `cutpts`.
 #'
 #' @examples
 #' # Using one cut-point
