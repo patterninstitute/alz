@@ -4,9 +4,11 @@ Version: 0.0.1
 Authors@R: c(
     person("Ramiro", "Magno", , "rmagno@pattern.institute", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5226-3441")),
+    person("Miguel", "Casanova", , "miguel.casanova@firalis.com", role = "aut",
+            comment = c(ORCID = "0000-0001-8622-6550")),
     person("Pattern Institute", role = c("cph", "fnd"),
-           comment = c("https://www.pattern.institute", ROR = "04jrgd746"))
-  )
+           comment = c("https://www.pattern.institute"))
+           )
 Description: 
   Tools for representing, organizing, and analyzing diagnostic and staging
   information related to Alzheimer's disease. Supports structured workflows for

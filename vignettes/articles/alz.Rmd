@@ -9,4 +9,104 @@ knitr::opts_chunk$set(
 )
 ```
 
+## Overview
+
+The `{alz}` package provides structured metadata and helper functions for
+working with Alzheimer's disease biomarkers. It formalizes key concepts
+related to how biomarkers are **measured**, **interpreted**, and
+**mapped to pathology**, using relational data tables.
+
+This vignette introduces the four foundational entities in the package:
+
+- `analytes`: the molecular entities being quantified  
+- `assays`: the measurement implementations used to quantify analytes  
+- `cutpoints`: the thresholds used to interpret assay results  
+- `biomarkers`: biologically or clinically meaningful indicators derived from one or more analytes
+
+Each of these concepts plays a distinct role in the biomarker data model.
+
+## Analytes
+
+An *analyte* is the molecular species being quantified in a biological matrix
+(e.g. CSF, plasma). Examples include:
+
+- Aβ42 (amyloid beta 1–42)
+- p-tau181 (tau phosphorylated at threonine 181)
+- GFAP (glial fibrillary acidic protein)
+
+Analytes are uniquely identified using external ontology references such as
+*ChEBI* or *UniProt*, and are independent of how they are measured or
+interpreted.
+
+```r
+analytes()
+```
+
+## Assays
+
+An assay represents a specific measurement implementation used to quantify an
+analyte. It combines:
+
+- a technology (e.g. ELISA, Simoa, PET),
+- a platform (e.g. INNOTEST, HD-X),
+- a vendor (e.g. Fujirebio, Quanterix),
+- a matrix (e.g. CSF, plasma),
+
+and quantitation properties (e.g. LLOQ, ULOQ, unit).
+
+Each row in the `assays()` table reflects a specific commercial or
+research-grade measurement system.
+
+## Cutpoints
+
+A cut-point defines how a numeric assay result is discretised into categorical
+levels — such as negative or positive. It includes:
+
+- the biomarker being classified
+- the assay used (optional if general)
+- the threshold(s) and associated labels
+- intended use (e.g. screening vs diagnosis)
+
+Cut-points enable classification of raw measurements based on published or
+validated rules.
+
+```{r}
+cutpoints()
+```
+
+## Biomarkers
+
+A biomarker is a biologically or clinically meaningful measurement derived
+from one or more analytes. Biomarkers may be:
+
+- original: direct assay of an analyte (e.g. p-tau181 in CSF)
+- derived: computed from analytes (e.g. Aβ42/Aβ40 ratio, p-tau217 / non-p-tau217)
+- imaging-based: e.g. amyloid PET, FDG PET
+
+Each biomarker is mapped to:
+
+- a category: core, non-specific, co-pathology
+- a subcategory: A, T1, T2, N, I, V, S
+- a modality: fluid, imaging, or hybrid
+
+```{r}
+biomarkers()
+```
+
+## Relationships
+
+The entities are connected as follows:
+
+- Assays measure analytes
+- Biomarkers are defined from one or more analytes
+- Cut-points interpret biomarkers, optionally specific to an assay, and with
+an intended use in mind or specific validation circumstances.
+
+This relational structure allows users to navigate from molecular data to
+clinical interpretation with full transparency.
+
+```{r}
+# Example: get all assays for Aβ42
+assays() |> dplyr::filter(analyte_id == "CHEBI:64647")
+```
 

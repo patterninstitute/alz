@@ -21,8 +21,9 @@
 loq <- function(assay_id) {
   stopifnot(is.character(assay_id), length(assay_id) == 1L)
 
-  if (is.na(assay_id))
+  if (is.na(assay_id)) {
     return(c(lloq = NA_real_, uloq = NA_real_))
+  }
 
   tibble::tibble(assay_id = assay_id) |>
     dplyr::left_join(assays(), by = "assay_id") |>

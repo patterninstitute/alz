@@ -13,6 +13,7 @@ A tibble with the following columns:
 \item{\code{analyte_id}}{Reference to the measured analyte (see \code{\link[=analytes]{analytes()}}).}
 \item{\code{modality}}{Either \code{"fluid"} or \code{"imaging"}, denoting the type of measurement.}
 \item{\code{matrix}}{Biological specimen used, such as \code{"CSF"}, \code{"plasma"}, or \code{"brain"}.}
+\item{\code{cv}}{Coefficient of variation.}
 \item{\code{lloq}}{Lower limit of quantification, in appropriate units.}
 \item{\code{uloq}}{Upper limit of quantification.}
 \item{\code{unit}}{Measurement unit (e.g., \code{"pg/mL"}, \code{"SUVR"}).}
