@@ -72,14 +72,166 @@
 
     
     
-
-  </main>
+<div class="section level2">
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h2>
+<p>The <a href="https://www.pattern.institute/alz/">alz</a> package provides structured metadata and
+helper functions for working with Alzheimer’s disease biomarkers. It
+formalizes key concepts related to how biomarkers are
+<strong>measured</strong>, <strong>interpreted</strong>, and
+<strong>mapped to pathology</strong>, using relational data tables.</p>
+<p>This vignette introduces the four foundational entities in the
+package:</p>
+<ul>
+<li>
+<code>analytes</code>: the molecular entities being quantified<br>
+</li>
+<li>
+<code>assays</code>: the measurement implementations used to
+quantify analytes<br>
+</li>
+<li>
+<code>cutpoints</code>: the thresholds used to interpret assay
+results<br>
+</li>
+<li>
+<code>biomarkers</code>: biologically or clinically meaningful
+indicators derived from one or more analytes</li>
+</ul>
+<p>Each of these concepts plays a distinct role in the biomarker data
+model.</p>
+</div>
+<div class="section level2">
+<h2 id="analytes">Analytes<a class="anchor" aria-label="anchor" href="#analytes"></a>
+</h2>
+<p>An <em>analyte</em> is the molecular species being quantified in a
+biological matrix (e.g. CSF, plasma). Examples include:</p>
+<ul>
+<li>Aβ42 (amyloid beta 1–42)</li>
+<li>p-tau181 (tau phosphorylated at threonine 181)</li>
+<li>GFAP (glial fibrillary acidic protein)</li>
+</ul>
+<p>Analytes are uniquely identified using external ontology references
+such as <em>ChEBI</em> or <em>UniProt</em>, and are independent of how
+they are measured or interpreted.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/analytes.html">analytes</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="assays">Assays<a class="anchor" aria-label="anchor" href="#assays"></a>
+</h2>
+<p>An assay represents a specific measurement implementation used to
+quantify an analyte. It combines:</p>
+<ul>
+<li>a technology (e.g. ELISA, Simoa, PET),</li>
+<li>a platform (e.g. INNOTEST, HD-X),</li>
+<li>a vendor (e.g. Fujirebio, Quanterix),</li>
+<li>a matrix (e.g. CSF, plasma),</li>
+</ul>
+<p>and quantitation properties (e.g. LLOQ, ULOQ, unit).</p>
+<p>Each row in the <code><a href="../reference/assays.html">assays()</a></code> table reflects a specific
+commercial or research-grade measurement system.</p>
+</div>
+<div class="section level2">
+<h2 id="cutpoints">Cutpoints<a class="anchor" aria-label="anchor" href="#cutpoints"></a>
+</h2>
+<p>A cut-point defines how a numeric assay result is discretised into
+categorical levels — such as negative or positive. It includes:</p>
+<ul>
+<li>the biomarker being classified</li>
+<li>the assay used (optional if general)</li>
+<li>the threshold(s) and associated labels</li>
+<li>intended use (e.g. screening vs diagnosis)</li>
+</ul>
+<p>Cut-points enable classification of raw measurements based on
+published or validated rules.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/cutpoints.html">cutpoints</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 9 × 8</span></span></span>
+<span><span class="co">#&gt;   cutpt_id             bmk_id cutpoints unit  assay_id intended_use source notes</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> ab42-csf-elecsys-wi… ab42   <span style="text-decoration: underline;">1</span>092      pg/mL elecsys… research     10.10… Deri…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> ptau181-ab42-ratio-… ptau1…    0.025  ratio elecsys… research     10.10… Deri…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> ttau-ab42-ratio-csf… ttau-…    0.27   ratio elecsys… research     10.10… Deri…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ab42-csf-elecsys-ha… ab42   <span style="text-decoration: underline;">1</span>100      pg/mL elecsys… research     10.10… <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> ptau181-ab42-ratio-… ptau1…    0.021<span style="text-decoration: underline;">5</span> ratio elecsys… research     10.10… <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> ttau-ab42-ratio-csf… ttau-…    0.241  ratio elecsys… research     10.10… <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> <span style="color: #BB0000;">NA</span>                   <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span> ab42-innotest        ab42     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    innotes… diagnosis    PMID:… CSF …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">9</span> ptau181-elecsys      ptau1…   <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    elecsys… diagnosis    PMID:… Elec…</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="biomarkers">Biomarkers<a class="anchor" aria-label="anchor" href="#biomarkers"></a>
+</h2>
+<p>A biomarker is a biologically or clinically meaningful measurement
+derived from one or more analytes. Biomarkers may be:</p>
+<ul>
+<li>original: direct assay of an analyte (e.g. p-tau181 in CSF)</li>
+<li>derived: computed from analytes (e.g. Aβ42/Aβ40 ratio, p-tau217 /
+non-p-tau217)</li>
+<li>imaging-based: e.g. amyloid PET, FDG PET</li>
+</ul>
+<p>Each biomarker is mapped to:</p>
+<ul>
+<li>a category: core, non-specific, co-pathology</li>
+<li>a subcategory: A, T1, T2, N, I, V, S</li>
+<li>a modality: fluid, imaging, or hybrid</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/biomarkers.html">biomarkers</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 22 × 9</span></span></span>
+<span><span class="co">#&gt;    bmk_id            bmk_name bmk_category bmk_subcategory bmk_modality bmk_type</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> ab40              Aβ40     core         A               fluid        original</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> ab42              Aβ42     core         A               fluid        original</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> ab42-ab40-ratio   Aβ42 / … core         A               fluid        derived </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> amyloid_pet       Amyloid… core         A               imaging      original</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> t-tau             Total t… core         T1              fluid        original</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> ptau217           p-tau217 core         T1              fluid        original</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> ptau181           p-tau181 core         T1              fluid        original</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> ptau231           p-tau231 core         T1              fluid        original</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> ptau181-ab42-rat… p-tau18… core         T1              fluid        derived </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> ptau217-np217-ra… p-tau21… core         T1              fluid        derived </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 12 more rows</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 3 more variables: analyte_ids &lt;list&gt;, bmk_desc &lt;chr&gt;, notes &lt;lgl&gt;</span></span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="relationships">Relationships<a class="anchor" aria-label="anchor" href="#relationships"></a>
+</h2>
+<p>The entities are connected as follows:</p>
+<ul>
+<li>Assays measure analytes</li>
+<li>Biomarkers are defined from one or more analytes</li>
+<li>Cut-points interpret biomarkers, optionally specific to an assay,
+and with an intended use in mind or specific validation
+circumstances.</li>
+</ul>
+<p>This relational structure allows users to navigate from molecular
+data to clinical interpretation with full transparency.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Example: get all assays for Aβ42</span></span>
+<span><span class="fu"><a href="../reference/assays.html">assays</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">analyte_id</span> <span class="op">==</span> <span class="st">"CHEBI:64647"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 8 × 12</span></span></span>
+<span><span class="co">#&gt;   assay_id  analyte_id modality matrix cv     lloq  uloq unit  technology vendor</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> innotest… CHEBI:646… fluid    CSF    <span style="color: #BB0000;">NA</span>      225  <span style="text-decoration: underline;">1</span>452 pg/mL ELISA      Fujir…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> lumipuls… CHEBI:646… fluid    CSF    <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span> pg/mL CLEIA      Fujir…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> euroimmu… CHEBI:646… fluid    CSF    <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span> pg/mL ELISA      EUROI…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> innogene… CHEBI:646… fluid    CSF    <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span> pg/mL ELISA      Innog…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> msd-ab42… CHEBI:646… fluid    CSF    <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span> pg/mL ECLIA      MSD   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> xmap-ab4… CHEBI:646… fluid    CSF    <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span> pg/mL xMAP       Fujir…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> elecsys-… CHEBI:646… fluid    CSF    <span style="color: #BB0000;">NA</span>      150  <span style="text-decoration: underline;">2</span>500 pg/mL ECLIA      Roche </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span> pet-amyl… CHEBI:646… imaging  brain  <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span> SUVR  PET        AVID  </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2 more variables: platform &lt;chr&gt;, description &lt;chr&gt;</span></span></span></code></pre></div>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Ramiro Magno, Pattern Institute.</p>
+  <p>Developed by Ramiro Magno, Miguel Casanova, Pattern Institute.</p>
 </div>
 
 <div class="pkgdown-footer-right">

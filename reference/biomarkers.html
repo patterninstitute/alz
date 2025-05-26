@@ -101,29 +101,20 @@ for provenance.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">biomarkers</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 20 × 9</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 22 × 9</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    bmk_id            bmk_name bmk_category bmk_subcategory bmk_modality bmk_type</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ab42              Aβ42     core         A               fluid        original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ab42_ab40_ratio   Aβ42 / … core         A               fluid        derived </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> amyloid_pet       Amyloid… core         A               imaging      original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> ptau217           p-tau217 core         T1              fluid        original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> ptau181           p-tau181 core         T1              fluid        original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> ptau231           p-tau231 core         T1              fluid        original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> ptau181_ab42_rat… p-tau18… core         T1              fluid        derived </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> ptau217_np217_ra… p-tau21… core         T1              fluid        derived </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> ptau205           p-tau205 core         T2              fluid        original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> mtbr_tau243       MTBR-ta… core         T2              fluid        original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> np_tau            Non-pho… core         T2              fluid        original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> tau_pet           Tau PET  core         T2              imaging      original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> ttau_ab42_ratio   t-tau /… core         T2              fluid        derived </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> nfl               NfL      non-specific N               fluid        original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> mri_atrophy       Anatomi… non-specific N               imaging      original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> fdg_pet           FDG PET  non-specific N               imaging      original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> gfap              GFAP     non-specific I               fluid        original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">18</span> syn_saa           αSyn-SAA co-pathology S               fluid        original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">19</span> mri_wmh           MRI inf… co-pathology V               imaging      original</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">20</span> ct_infarct        CT infa… co-pathology V               imaging      original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ab40              Aβ40     core         A               fluid        original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ab42              Aβ42     core         A               fluid        original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> ab42-ab40-ratio   Aβ42 / … core         A               fluid        derived </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> amyloid_pet       Amyloid… core         A               imaging      original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> t-tau             Total t… core         T1              fluid        original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> ptau217           p-tau217 core         T1              fluid        original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> ptau181           p-tau181 core         T1              fluid        original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> ptau231           p-tau231 core         T1              fluid        original</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> ptau181-ab42-rat… p-tau18… core         T1              fluid        derived </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> ptau217-np217-ra… p-tau21… core         T1              fluid        derived </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3 more variables: analyte_ids &lt;list&gt;, bmk_desc &lt;chr&gt;, notes &lt;lgl&gt;</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
@@ -133,7 +124,7 @@ for provenance.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Ramiro Magno, Pattern Institute.</p>
+  <p>Developed by Ramiro Magno, Miguel Casanova, Pattern Institute.</p>
 </div>
 
 <div class="pkgdown-footer-right">

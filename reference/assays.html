@@ -80,6 +80,9 @@ limits of quantification (LLOQ, ULOQ) are included where available.</p>
 <dt><code>matrix</code></dt>
 <dd><p>Biological specimen used, such as <code>"CSF"</code>, <code>"plasma"</code>, or <code>"brain"</code>.</p></dd>
 
+<dt><code>cv</code></dt>
+<dd><p>Coefficient of variation.</p></dd>
+
 <dt><code>lloq</code></dt>
 <dd><p>Lower limit of quantification, in appropriate units.</p></dd>
 
@@ -111,29 +114,20 @@ limits of quantification (LLOQ, ULOQ) are included where available.</p>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">assays</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 20 × 11</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    assay_id     analyte_id modality matrix  lloq    uloq unit  technology vendor</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> innotest-ab… CHEBI:646… fluid    CSF    225    <span style="text-decoration: underline;">1</span>452   pg/mL ELISA      Fujir…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> innotest-ab… CHEBI:646… fluid    CSF      3.4 <span style="text-decoration: underline;">10</span>000   pg/mL ELISA      Fujir…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> lumipulse-g… CHEBI:646… fluid    CSF     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>   pg/mL CLEIA      Fujir…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> lumipulse-g… CHEBI:646… fluid    CSF     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>   pg/mL CLEIA      Fujir…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> euroimmun-a… CHEBI:646… fluid    CSF      6.5   641   pg/mL ELISA      EUROI…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> euroimmun-a… CHEBI:646… fluid    CSF    153   <span style="text-decoration: underline;">11</span>000   pg/mL ELISA      EUROI…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> innogenetic… CHEBI:646… fluid    CSF     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>   pg/mL ELISA      Innog…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> innogenetic… CHEBI:646… fluid    CSF     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>   pg/mL ELISA      Innog…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> msd-ab42-csf CHEBI:646… fluid    CSF      3    <span style="text-decoration: underline;">1</span>500   pg/mL ECLIA      MSD   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> msd-ab40-csf CHEBI:646… fluid    CSF     10    <span style="text-decoration: underline;">2</span>500   pg/mL ECLIA      MSD   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> xmap-ab42-c… CHEBI:646… fluid    CSF     25    <span style="text-decoration: underline;">1</span>700   pg/mL xMAP       Fujir…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> xmap-ab40-c… CHEBI:646… fluid    CSF     20    <span style="text-decoration: underline;">2</span>500   pg/mL xMAP       Fujir…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">13</span> elecsys-pta… P10636-pT… fluid    CSF      0.5  <span style="text-decoration: underline;">1</span>200   pg/mL ECLIA      Roche </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> lumipulse-p… P10636-pT… fluid    CSF      1    <span style="text-decoration: underline;">1</span>500   pg/mL CLEIA      Fujir…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> simoa-ptau1… P10636-pT… fluid    plasma   0.2   500   pg/mL Simoa      Quant…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> simoa-nfl-p… P07196     fluid    plasma   2    <span style="text-decoration: underline;">1</span>800   pg/mL Simoa      Quant…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">17</span> simoa-nfl-c… P07196     fluid    CSF      1    <span style="text-decoration: underline;">2</span>500   pg/mL Simoa      Quant…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">18</span> simoa-gfap-… P14136     fluid    plasma   0.5  <span style="text-decoration: underline;">1</span>200   pg/mL Simoa      Quant…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">19</span> pet-tau-flo… P10636     imaging  brain    0.3     3   SUVR  PET        AVID  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">20</span> pet-amyloid… CHEBI:646… imaging  brain    0.3     2.5 SUVR  PET        AVID  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 22 × 12</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    assay_id analyte_id modality matrix cv     lloq  uloq unit  technology vendor</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> innotes… CHEBI:646… fluid    CSF    <span style="color: #BB0000;">NA</span>    225    <span style="text-decoration: underline;">1</span>452 pg/mL ELISA      Fujir…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> innotes… CHEBI:646… fluid    CSF    <span style="color: #BB0000;">NA</span>      3.4 <span style="text-decoration: underline;">10</span>000 pg/mL ELISA      Fujir…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> lumipul… CHEBI:646… fluid    CSF    <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span> pg/mL CLEIA      Fujir…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> lumipul… CHEBI:646… fluid    CSF    <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span> pg/mL CLEIA      Fujir…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> euroimm… CHEBI:646… fluid    CSF    <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span> pg/mL ELISA      EUROI…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> euroimm… CHEBI:646… fluid    CSF    <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span> pg/mL ELISA      EUROI…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> innogen… CHEBI:646… fluid    CSF    <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span> pg/mL ELISA      Innog…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> innogen… CHEBI:646… fluid    CSF    <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span> pg/mL ELISA      Innog…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> msd-ab4… CHEBI:646… fluid    CSF    <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span> pg/mL ECLIA      MSD   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> msd-ab4… CHEBI:646… fluid    CSF    <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span> pg/mL ECLIA      MSD   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: platform &lt;chr&gt;, description &lt;chr&gt;</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
@@ -143,7 +137,7 @@ limits of quantification (LLOQ, ULOQ) are included where available.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Ramiro Magno, Pattern Institute.</p>
+  <p>Developed by Ramiro Magno, Miguel Casanova, Pattern Institute.</p>
 </div>
 
 <div class="pkgdown-footer-right">
