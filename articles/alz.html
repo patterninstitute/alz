@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">alz</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -147,18 +147,17 @@ categorical levels — such as negative or positive. It includes:</p>
 published or validated rules.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cutpoints.html">cutpoints</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 9 × 8</span></span></span>
-<span><span class="co">#&gt;   cutpt_id             bmk_id cutpoints unit  assay_id intended_use source notes</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> ab42-csf-elecsys-wi… ab42   <span style="text-decoration: underline;">1</span>092      pg/mL elecsys… research     10.10… Deri…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> ptau181-ab42-ratio-… ptau1…    0.025  ratio elecsys… research     10.10… Deri…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> ttau-ab42-ratio-csf… ttau-…    0.27   ratio elecsys… research     10.10… Deri…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ab42-csf-elecsys-ha… ab42   <span style="text-decoration: underline;">1</span>100      pg/mL elecsys… research     10.10… <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> ptau181-ab42-ratio-… ptau1…    0.021<span style="text-decoration: underline;">5</span> ratio elecsys… research     10.10… <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> ttau-ab42-ratio-csf… ttau-…    0.241  ratio elecsys… research     10.10… <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> <span style="color: #BB0000;">NA</span>                   <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span> ab42-innotest        ab42     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    innotes… diagnosis    PMID:… CSF …</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">9</span> ptau181-elecsys      ptau1…   <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    elecsys… diagnosis    PMID:… Elec…</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 8 × 9</span></span></span>
+<span><span class="co">#&gt;   cutpt_id   bmk_id cutpoints unit  direction assay_id intended_use source notes</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> ab42-csf-… ab42   <span style="color: #949494;">&lt;dbl [1]&gt;</span> pg/mL decreasi… elecsys… research     10.10… Deri…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> ptau181-a… ptau1… <span style="color: #949494;">&lt;dbl [1]&gt;</span> ratio increasi… elecsys… research     10.10… Deri…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> ttau-ab42… ttau_… <span style="color: #949494;">&lt;dbl [1]&gt;</span> ratio increasi… elecsys… research     10.10… Deri…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ab42-csf-… ab42   <span style="color: #949494;">&lt;dbl [1]&gt;</span> pg/mL decreasi… elecsys… research     10.10… <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> ptau181-a… ptau1… <span style="color: #949494;">&lt;dbl [1]&gt;</span> ratio increasi… elecsys… research     10.10… <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> ttau-ab42… ttau_… <span style="color: #949494;">&lt;dbl [1]&gt;</span> ratio increasi… elecsys… research     10.10… <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> ab42-inno… ab42   <span style="color: #949494;">&lt;dbl [1]&gt;</span> <span style="color: #BB0000;">NA</span>    increasi… innotes… diagnosis    PMID:… CSF …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span> ptau181-e… ptau1… <span style="color: #949494;">&lt;dbl [1]&gt;</span> <span style="color: #BB0000;">NA</span>    increasi… elecsys… diagnosis    PMID:… Elec…</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="biomarkers">Biomarkers<a class="anchor" aria-label="anchor" href="#biomarkers"></a>
@@ -179,20 +178,20 @@ non-p-tau217)</li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/biomarkers.html">biomarkers</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 22 × 9</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 23 × 9</span></span></span>
 <span><span class="co">#&gt;    bmk_id     bmk_name bmk_category bmk_class bmk_subclass bmk_modality bmk_type</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> ab40       Aβ40     core         core 1    A            fluid        original</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> ab42       Aβ42     core         core 1    A            fluid        original</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> ab42-ab40… Aβ42 / … core         core 1    A            fluid        derived </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> ab42_ab40… Aβ42 / … core         core 1    A            fluid        derived </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> amyloid_p… Amyloid… core         core 1    A            imaging      original</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> t-tau      Total t… core         core 1    T1           fluid        original</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> t_tau      Total t… core         core 1    T1           fluid        original</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> ptau217    p-tau217 core         core 1    T1           fluid        original</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> ptau181    p-tau181 core         core 1    T1           fluid        original</span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> ptau231    p-tau231 core         core 1    T1           fluid        original</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> ptau181-a… p-tau18… core         core 1    T1           fluid        derived </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> ptau217-n… p-tau21… core         core 1    T1           fluid        derived </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 12 more rows</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> ptau181_a… p-tau18… core         core 1    T1           fluid        derived </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> ptau217_n… p-tau21… core         core 1    T1           fluid        derived </span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 13 more rows</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2 more variables: analyte_ids &lt;list&gt;, bmk_desc &lt;chr&gt;</span></span></span></code></pre></div>
 </div>
 <div class="section level2">

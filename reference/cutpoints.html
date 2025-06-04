@@ -7,7 +7,7 @@ clinical or research settings.
 cutpts() returns only the numeric cut-point(s) associated with that
 identifier. These thresholds are typically used for classifying biomarker
 values into diagnostic categories such as positive, negative, or
-indeterminate, see bin_by().
+indeterminate, see cut_by().
 
 "><meta property="og:description" content="
 
@@ -17,7 +17,7 @@ clinical or research settings.
 cutpts() returns only the numeric cut-point(s) associated with that
 identifier. These thresholds are typically used for classifying biomarker
 values into diagnostic categories such as positive, negative, or
-indeterminate, see bin_by().
+indeterminate, see cut_by().
 
 "><meta property="og:image" content="https://www.pattern.institute/alz/logo.svg"></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -27,7 +27,7 @@ indeterminate, see bin_by().
 
     <a class="navbar-brand me-2" href="../index.html">alz</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,23 +64,28 @@ clinical or research settings.</p></li>
 <li><p><code>cutpts()</code> returns only the numeric cut-point(s) associated with that
 identifier. These thresholds are typically used for classifying biomarker
 values into diagnostic categories such as positive, negative, or
-indeterminate, see <code><a href="bin_by.html">bin_by()</a></code>.</p></li>
+indeterminate, see <code><a href="cut_by.html">cut_by()</a></code>.</p></li>
 </ul></div>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">cutpoints</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">cutpts</span><span class="op">(</span><span class="va">cutpt_id</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">cutpts</span><span class="op">(</span><span class="va">x</span>, direction <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"increasing"</span>, <span class="st">"decreasing"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
 
 
-<dl><dt id="arg-cutpt-id">cutpt_id<a class="anchor" aria-label="anchor" href="#arg-cutpt-id"></a></dt>
+<dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
 <dd><p>A character scalar specifying the identifier of the
-cut-point to retrieve.</p></dd>
+cut-point to retrieve, or a numeric vector of cut-point values.</p></dd>
+
+
+<dt id="arg-direction">direction<a class="anchor" aria-label="anchor" href="#arg-direction"></a></dt>
+<dd><p>Does positivity increase with <code>x</code> (<code>"increasing"</code>) or does
+it decrease with <code>x</code> (<code>"decreasing"</code>).</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -93,31 +98,42 @@ for that biomarker-assay combination.</p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="bin_by.html">bin_by()</a></code>, <code><a href="cv_cutpts.html">cv_cutpts()</a></code></p></div>
+    <div class="dont-index"><p><code><a href="cut_by.html">cut_by()</a></code>, <code><a href="cv_cutpts.html">cv_cutpts()</a></code></p></div>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Return the full cut-point table with metadata</span></span></span>
 <span class="r-in"><span><span class="fu">cutpoints</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 9 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   cutpt_id             bmk_id cutpoints unit  assay_id intended_use source notes</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> ab42-csf-elecsys-wi… ab42   <span style="text-decoration: underline;">1</span>092      pg/mL elecsys… research     10.10… Deri…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> ptau181-ab42-ratio-… ptau1…    0.025  ratio elecsys… research     10.10… Deri…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> ttau-ab42-ratio-csf… ttau-…    0.27   ratio elecsys… research     10.10… Deri…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> ab42-csf-elecsys-ha… ab42   <span style="text-decoration: underline;">1</span>100      pg/mL elecsys… research     10.10… <span style="color: #BB0000;">NA</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> ptau181-ab42-ratio-… ptau1…    0.021<span style="text-decoration: underline;">5</span> ratio elecsys… research     10.10… <span style="color: #BB0000;">NA</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> ttau-ab42-ratio-csf… ttau-…    0.241  ratio elecsys… research     10.10… <span style="color: #BB0000;">NA</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> <span style="color: #BB0000;">NA</span>                   <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>       <span style="color: #BB0000;">NA</span>           <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> ab42-innotest        ab42     <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    innotes… diagnosis    PMID:… CSF …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">9</span> ptau181-elecsys      ptau1…   <span style="color: #BB0000;">NA</span>      <span style="color: #BB0000;">NA</span>    elecsys… diagnosis    PMID:… Elec…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 8 × 9</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   cutpt_id   bmk_id cutpoints unit  direction assay_id intended_use source notes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> ab42-csf-… ab42   <span style="color: #949494;">&lt;dbl [1]&gt;</span> pg/mL decreasi… elecsys… research     10.10… Deri…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> ptau181-a… ptau1… <span style="color: #949494;">&lt;dbl [1]&gt;</span> ratio increasi… elecsys… research     10.10… Deri…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> ttau-ab42… ttau_… <span style="color: #949494;">&lt;dbl [1]&gt;</span> ratio increasi… elecsys… research     10.10… Deri…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> ab42-csf-… ab42   <span style="color: #949494;">&lt;dbl [1]&gt;</span> pg/mL decreasi… elecsys… research     10.10… <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> ptau181-a… ptau1… <span style="color: #949494;">&lt;dbl [1]&gt;</span> ratio increasi… elecsys… research     10.10… <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> ttau-ab42… ttau_… <span style="color: #949494;">&lt;dbl [1]&gt;</span> ratio increasi… elecsys… research     10.10… <span style="color: #BB0000;">NA</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> ab42-inno… ab42   <span style="color: #949494;">&lt;dbl [1]&gt;</span> <span style="color: #BB0000;">NA</span>    increasi… innotes… diagnosis    PMID:… CSF …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> ptau181-e… ptau1… <span style="color: #949494;">&lt;dbl [1]&gt;</span> <span style="color: #BB0000;">NA</span>    increasi… elecsys… diagnosis    PMID:… Elec…</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># One cut-point</span></span></span>
+<span class="r-in"><span><span class="fu">cutpts</span><span class="op">(</span><span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">(-)</span> &lt; 5 &lt;= <span style="color: #BB0000;">(+)</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Two cut-points</span></span></span>
+<span class="r-in"><span><span class="fu">cutpts</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">6</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">(-)</span> &lt; 2 &lt;= <span style="color: #BBBB00;">(~)</span> &lt; 6 &lt;= <span style="color: #BB0000;">(+)</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Two cut-points but increasing values of `x` mean a negative result.</span></span></span>
+<span class="r-in"><span><span class="fu">cutpts</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">6</span><span class="op">)</span>, <span class="st">"decreasing"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">(+)</span> &lt;= 2 &lt; <span style="color: #BBBB00;">(~)</span> &lt;= 6 &lt; <span style="color: #00BB00;">(-)</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Retrieve the numeric cut-point(s) for a specific identifier</span></span></span>
 <span class="r-in"><span><span class="fu">cutpts</span><span class="op">(</span><span class="st">"ab42-csf-elecsys-willemse2018"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1092</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BB0000;">(+)</span> &lt;= 1092 &lt; <span style="color: #00BB00;">(-)</span> </span>
 <span class="r-in"><span><span class="fu">cutpts</span><span class="op">(</span><span class="st">"ptau181-ab42-ratio-csf-elecsys-willemse2018"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.025</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">(-)</span> &lt; 0.025 &lt;= <span style="color: #BB0000;">(+)</span> </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

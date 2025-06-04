@@ -21,7 +21,7 @@ rules to continuous biomarker values under analytical variability."><meta proper
 
     <a class="navbar-brand me-2" href="../index.html">alz</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,17 +89,15 @@ the distributional assumption used when applying the CV.</p></dd>
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A numeric vector of length 2: <code>c(lower, upper)</code>.</p>
+    <p>An updated <code>cutpts</code> object.</p>
     </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">cv_cutpts</span><span class="op">(</span><span class="fl">100</span>, cv <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     lower     upper </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  82.24159 121.59298 </span>
-<span class="r-in"><span><span class="fu">cv_cutpts</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">90</span>, <span class="fl">110</span><span class="op">)</span>, cv <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lower.lower upper.upper </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    74.01743   133.75228 </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">cv_cutpts</span><span class="op">(</span><span class="fu"><a href="cutpoints.html">cutpts</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>, cv <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">(-)</span> &lt; 82.24159 &lt;= <span style="color: #BBBB00;">(~)</span> &lt; 121.593 &lt;= <span style="color: #BB0000;">(+)</span> </span>
+<span class="r-in"><span><span class="fu">cv_cutpts</span><span class="op">(</span><span class="fu"><a href="cutpoints.html">cutpts</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">90</span>, <span class="fl">110</span><span class="op">)</span><span class="op">)</span>, cv <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #00BB00;">(-)</span> &lt; 74.01743 &lt;= <span style="color: #BBBB00;">(~)</span> &lt; 133.7523 &lt;= <span style="color: #BB0000;">(+)</span> </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
