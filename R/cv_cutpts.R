@@ -17,32 +17,33 @@
 #'   the distributional assumption used when applying the CV.
 #' @param level Confidence level to use (default = 0.95).
 #'
-#' @returns A numeric vector of length 2: `c(lower, upper)`.
+#' @returns An updated `cutpts` object.
 #'
 #' @examples
-#' cv_cutpts(100, cv = 0.1)
-#' cv_cutpts(c(90, 110), cv = 0.1)
+#' cv_cutpts(cutpts(100), cv = 0.1)
+#' cv_cutpts(cutpts(c(90, 110)), cv = 0.1)
 #'
 #' @export
 cv_cutpts <- function(cutpts, cv, dist = c("lognormal", "normal"), level = 0.95) {
-  stopifnot(
-    is.numeric(cutpts),
-    length(cutpts) %in% c(1, 2),
-    is.numeric(cv), length(cv) == 1, cv > 0
-  )
+
+  if (isFALSE(is_cutpts(cutpts))) {
+    stop("`cutpts` must be `cutpts` object.")
+  }
 
   dist <- match.arg(dist)
+  direction <- attr(cutpts, "direction", exact = TRUE)
 
   # If one cut-point
   if (length(cutpts) == 1) {
-    return(ci(cutpts, cv = cv, dist = dist, level = level)[1, ])
+    new_cutpts <- ci(cutpts, cv = cv, dist = dist, level = level)[1, ]
+    return(cutpts(x = new_cutpts, direction = direction))
   }
 
   # If two cut-points
   ci_matrix <- ci(cutpts, cv = cv, dist = dist, level = level)
 
-  c(
-    lower = ci_matrix[1, 1],  # lower bound of first cutpoint
-    upper = ci_matrix[2, 2]   # upper bound of second cutpoint
-  )
+  lower <- ci_matrix[1, 1]
+  upper <- ci_matrix[2, 2]
+  cutpts(c(lower, upper), direction = direction)
+
 }

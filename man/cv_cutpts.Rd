@@ -17,7 +17,7 @@ the distributional assumption used when applying the CV.}
 \item{level}{Confidence level to use (default = 0.95).}
 }
 \value{
-A numeric vector of length 2: \code{c(lower, upper)}.
+An updated \code{cutpts} object.
 }
 \description{
 Adjusts one or two diagnostic cut-points using a coefficient of variation
@@ -30,7 +30,7 @@ bound of the resulting interval. This is useful when applying classification
 rules to continuous biomarker values under analytical variability.
 }
 \examples{
-cv_cutpts(100, cv = 0.1)
-cv_cutpts(c(90, 110), cv = 0.1)
+cv_cutpts(cutpts(100), cv = 0.1)
+cv_cutpts(cutpts(c(90, 110)), cv = 0.1)
 
 }

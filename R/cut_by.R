@@ -1,3 +1,15 @@
+bins_as_logical <- function(x, indeterminate_as = NA) {
+
+  if (is.logical(x)) return(x)
+
+  x1 <- rep_len(NA, length.out = length(x))
+  x1[x %in% "-"] <- FALSE
+  x1[x %in% "~"] <- indeterminate_as
+  x1[x %in% "+"] <- TRUE
+
+  x1
+}
+
 #' An enumeration of bin labels for positivity status
 #'
 #' @description
@@ -34,55 +46,46 @@ bins <- function(n = 2) {
 
 #' Categorize biomarker values into positivity bins
 #'
-#' [bin_by()] converts numeric biomarker values to diagnostic categories using
+#' [cut_by()] converts numeric biomarker values to diagnostic categories using
 #' one or two cut-points. Values equal to a cut-point are assigned to the
 #' *higher* bin (i.e., positive or indeterminate), consistent with clinical
 #' thresholding practices.
 #'
 #' @param x A numeric vector of biomarker values.
 #'
-#' @param cutpts A numeric vector of one or two strictly increasing
-#'   cut-points.
+#' @param cutpts An object of class `cutpts`, see [cutpts()] for more details.
 #'
-#' @return A factor with levels `"-"`, `"+"`, or `"-"`, `"~"`, `"+"` depending
-#'   on the number of `cutpts`.
+#' @returns A factor with levels `"-"`, `"~"`, `"+"`.
 #'
 #' @examples
 #' # Using one cut-point
-#' bin_by(x = 0:10, cutpts = 5)
+#' cut_by(x = 0:10, cutpts = cutpts(5))
 #'
 #' # Using two cut-points
-#' bin_by(x = 0:10, cutpts = c(5, 7))
+#' cut_by(x = 0:10, cutpts = cutpts(c(5, 7)))
 #'
 #' # Using cutpoints from the curated table `cutpoints()`
-#' bin_by(x = c(800, 1050, 1300), cutpts = cutpts("ab42-csf-elecsys-willemse2018"))
+#' cut_by(x = c(800, 1050, 1300), cutpts = cutpts("ab42-csf-elecsys-willemse2018"))
 #'
 #' @export
-bin_by <- function(x, cutpts) {
+cut_by <- function(x, cutpts) {
 
-  if (isFALSE(is.numeric(x))) {
-    stop("`x` must be a numeric vector.")
+  if (isFALSE(is_cutpts(cutpts))) {
+    stop("`cutpts` must be `cutpts` object.")
   }
 
-  if (anyNA(cutpts)) {
-    stop("`cutpts` cannot contain missing (`NA`) values.")
-  }
-
-  n_cutpts <- length(cutpts)
-  if (n_cutpts %notin% 1:2) {
-    stop(
-      "Number of cut-points must be either one or two. Length of `cutpts` is ",
-      n_cutpts,
-      call. = FALSE
-    )
-  }
-
-  cutpts <- sort(cutpts)
+  cutpt_values <- sort(as.numeric(cutpts))
+  bins <- bins(n = length(cutpt_values) + 1L)
+  direction <- attr(cutpts, "direction", exact = TRUE)
+  labels <- if (identical(direction, "increasing")) bins else rev(bins)
+  right <- identical(direction, "decreasing")
   cut(
     x,
-    breaks = c(-Inf, cutpts, Inf),
-    labels = bins(n = n_cutpts + 1L),
-    right = FALSE
-  )
+    breaks = c(-Inf, cutpt_values, Inf),
+    labels = labels,
+    right = right
+  ) |>
+    factor(levels = bins(n = 3L)) |>
+    bmk()
 }
 

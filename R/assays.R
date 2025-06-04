@@ -19,7 +19,7 @@
 #'   \item{`modality`}{Either `"fluid"` or `"imaging"`, denoting the type of measurement.}
 #'   \item{`matrix`}{Biological specimen used, such as `"CSF"`, `"plasma"`, or `"brain"`.}
 #'   \item{`cv`}{Coefficient of variation.}
-#'   \item{`lloq`}{Lower limit of quantification, in appropriate units.}
+#'   \item{`lloq`}{Lower limit of quantification.}
 #'   \item{`uloq`}{Upper limit of quantification.}
 #'   \item{`unit`}{Measurement unit (e.g., `"pg/mL"`, `"SUVR"`).}
 #'   \item{`technology`}{Underlying method used (e.g., `"ELISA"`, `"PET"`, `"Simoa"`).}

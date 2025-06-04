@@ -1,6 +1,6 @@
 Package: alz
 Title: Criteria for Diagnosis and Staging of Alzheimer's Disease
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: c(
     person("Ramiro", "Magno", , "rmagno@pattern.institute", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5226-3441")),
@@ -22,7 +22,14 @@ RoxygenNote: 7.3.2
 URL: https://www.pattern.institute/alz/, https://github.com/patterninstitute/alz
 BugReports: https://github.com/patterninstitute/alz/issues
 Config/Needs/website: patterninstitute/chic, rmarkdown
+Depends: 
+    R (>= 4.1.0)
 Imports: 
+    cli,
     dplyr,
     readr,
-    tibble
+    tibble,
+    vctrs
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

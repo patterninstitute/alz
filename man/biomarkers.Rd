@@ -11,27 +11,70 @@ A tibble with the following columns:
 \describe{
 \item{\code{bmk_id}}{Short identifier for the biomarker (e.g., \code{"ab42"}, \code{"ptau181_ab42_ratio"}).}
 \item{\code{bmk_name}}{Human-readable label (e.g., \code{"Aβ42 / Aβ40"}, \code{"Amyloid PET"}).}
-\item{\code{bmk_category}}{Biomarker classification: \code{"core"}, \code{"non-specific"}, or \code{"co-pathology"}.}
-\item{\code{bmk_subcategory}}{ATN or co-pathology label: \code{"A"}, \code{"T1"}, \code{"T2"}, \code{"N"}, \code{"I"}, \code{"V"}, \code{"S"}.}
-\item{\code{bmk_modality}}{Measurement domain: \code{"fluid"}, \code{"imaging"}, or \code{"hybrid"}.}
-\item{\code{bmk_type}}{Whether the biomarker is \code{"original"} (directly measured) or \code{"derived"} (computed).}
-\item{\code{analyte_ids}}{List of analyte IDs used to compute or define the biomarker.}
-\item{\code{bmk_desc}}{Concise description of biological relevance or measurement rationale.}
-\item{\code{notes}}{Optional comments or implementation notes.}
+\item{\code{bmk_category}}{Top-level role: \code{"core"}, \code{"non-specific"}, or \code{"co-pathology"}.}
+\item{\code{bmk_class}}{Stage or use-tier within category (e.g., \code{"core 1"}, \code{"core 2"}).}
+\item{\code{bmk_subclass}}{Biological process aligned with the ATNISV framework (e.g., \code{"A"}, \code{"T1"}, \code{"N"}).}
+\item{\code{bmk_modality}}{Measurement domain: \code{"fluid"} or \code{"imaging"}.}
+\item{\code{bmk_type}}{Whether the biomarker is \code{"original"} (directly measured) or \code{"derived"} (e.g., ratios).}
+\item{\code{analyte_ids}}{List of one or more analyte IDs underpinning the biomarker definition.}
+\item{\code{bmk_desc}}{Short description of what the biomarker measures or represents.}
 }
 }
 \description{
-Returns a tibble of curated biomarkers relevant to Alzheimer's disease and
-related neurodegenerative conditions. Each entry represents a measurable
-biological or imaging marker, including both original analyte-derived
-biomarkers and computed ratios or derived indicators.
+\code{\link[=biomarkers]{biomarkers()}} a dataset of curated biomarkers relevant to Alzheimer's
+disease (AD) and related neurodegenerative conditions. Each row corresponds
+to a defined biomarker, including both directly measured biomarkers and
+derived indicators such as ratios. Variables include identification of the
+biomarker (\code{bmk_id} and \code{bmk_name}), reference(s) to underpinning analyte(s)
+(\code{analyte_ids}), and classification details.
 }
 \details{
-Biomarkers are classified according to category (e.g., core, non-specific,
-co-pathology), modality (fluid, imaging), and 2024's ATN or related
-subcategory ("A", "T1", "T2", "N", "I", "V", "S"). Both original and derived
-biomarkers are supported, and links to the underlying analyte(s) are included
-for provenance.
+Biomarkers are organized into a structured, three-tier classification system
+that reflects their biological role, pathogenic target, and stage in the
+disease process:
+\itemize{
+\item \code{bmk_category}: the highest level of classification, reflecting the
+biomarker's overall diagnostic role. Categories include:
+\itemize{
+\item \code{"core"}: biomarkers of AD neuropathologic change (ADNPC), essential for
+diagnosis and staging;
+\item \code{"non-specific"}: biomarkers relevant to AD pathophysiology but not
+specific to AD;
+\item \code{"co-pathology"}: markers that capture common comorbid pathologies
+frequently co-occurring with AD.
+}
+\item \code{bmk_class}: a subdivision of the category level, used to distinguish
+between earlier- and later-appearing markers in the course of disease
+progression.
+
+For example:
+\itemize{
+\item \code{"core 1"} includes A and T1 markers that become abnormal early and
+support diagnosis;
+\item \code{"core 2"} includes T2 markers that become abnormal later and support
+disease staging.
+}
+\item \code{bmk_subclass}: identifies the specific biological process or proteinopathy
+the biomarker represents, aligned with the updated ATNISV framework:
+\itemize{
+\item \code{"A"}: amyloid-beta proteinopathy;
+\item \code{"T1"}: soluble tau fragments (e.g., p-tau181, p-tau217, p-tau231);
+\item \code{"T2"}: tau aggregates (e.g., tau PET, MTBR-tau243);
+\item \code{"N"}: neurodegeneration;
+\item \code{"I"}: inflammation and immune activation;
+\item \code{"S"}: synucleinopathy;
+\item \code{"V"}: vascular brain injury.
+}
+}
+
+In contrast, the \code{bmk_modality} field is not part of the classification
+hierarchy but denotes the technical measurement domain—either \code{"fluid"}
+(e.g., CSF, plasma) or \code{"imaging"} (e.g., PET, MRI). This
+distinction is critical because the same biological process (e.g., amyloid
+pathology) may be captured through multiple modalities, which differ in their
+temporal resolution, biological specificity, and clinical application. The
+updated criteria explicitly reject the assumption of equivalence between
+fluid and imaging biomarkers, hence the need to treat modality separately.
 }
 \examples{
 biomarkers()

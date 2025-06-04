@@ -7,11 +7,14 @@
 \usage{
 cutpoints()
 
-cutpts(cutpt_id)
+cutpts(x, direction = c("increasing", "decreasing"))
 }
 \arguments{
-\item{cutpt_id}{A character scalar specifying the identifier of the
-cut-point to retrieve.}
+\item{x}{A character scalar specifying the identifier of the
+cut-point to retrieve, or a numeric vector of cut-point values.}
+
+\item{direction}{Does positivity increase with \code{x} (\code{"increasing"}) or does
+it decrease with \code{x} (\code{"decreasing"}).}
 }
 \value{
 \itemize{
@@ -29,12 +32,21 @@ clinical or research settings.
 \item \code{cutpts()} returns only the numeric cut-point(s) associated with that
 identifier. These thresholds are typically used for classifying biomarker
 values into diagnostic categories such as positive, negative, or
-indeterminate, see \code{\link[=bin_by]{bin_by()}}.
+indeterminate, see \code{\link[=cut_by]{cut_by()}}.
 }
 }
 \examples{
 # Return the full cut-point table with metadata
 cutpoints()
+
+# One cut-point
+cutpts(5)
+
+# Two cut-points
+cutpts(c(2, 6))
+
+# Two cut-points but increasing values of `x` mean a negative result.
+cutpts(c(2, 6), "decreasing")
 
 # Retrieve the numeric cut-point(s) for a specific identifier
 cutpts("ab42-csf-elecsys-willemse2018")
@@ -42,5 +54,5 @@ cutpts("ptau181-ab42-ratio-csf-elecsys-willemse2018")
 
 }
 \seealso{
-\code{\link[=bin_by]{bin_by()}}, \code{\link[=cv_cutpts]{cv_cutpts()}}
+\code{\link[=cut_by]{cut_by()}}, \code{\link[=cv_cutpts]{cv_cutpts()}}
 }

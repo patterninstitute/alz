@@ -9,10 +9,13 @@
 #' - `cutpts()` returns only the numeric cut-point(s) associated with that
 #' identifier. These thresholds are typically used for classifying biomarker
 #' values into diagnostic categories such as positive, negative, or
-#' indeterminate, see [bin_by()].
+#' indeterminate, see [cut_by()].
 #'
-#' @param cutpt_id A character scalar specifying the identifier of the
-#'   cut-point to retrieve.
+#' @param x A character scalar specifying the identifier of the
+#'   cut-point to retrieve, or a numeric vector of cut-point values.
+#'
+#' @param direction Does positivity increase with `x` (`"increasing"`) or does
+#' it decrease with `x` (`"decreasing"`).
 #'
 #' @returns
 #'
@@ -26,11 +29,20 @@
 #' # Return the full cut-point table with metadata
 #' cutpoints()
 #'
+#' # One cut-point
+#' cutpts(5)
+#'
+#' # Two cut-points
+#' cutpts(c(2, 6))
+#'
+#' # Two cut-points but increasing values of `x` mean a negative result.
+#' cutpts(c(2, 6), "decreasing")
+#'
 #' # Retrieve the numeric cut-point(s) for a specific identifier
 #' cutpts("ab42-csf-elecsys-willemse2018")
 #' cutpts("ptau181-ab42-ratio-csf-elecsys-willemse2018")
 #'
-#' @seealso [bin_by()], [cv_cutpts()]
+#' @seealso [cut_by()], [cv_cutpts()]
 #'
 #' @export
 cutpoints <- function() {
@@ -38,14 +50,63 @@ cutpoints <- function() {
   readr::read_rds(file = path)
 }
 
-#' @rdname cutpoints
+new_cutpts <- function(x, direction = c("increasing", "decreasing")) {
+
+  if (isFALSE(is.numeric(x))) {
+    stop("`x` must be numeric.", call. = FALSE)
+  }
+
+  if (anyNA(x)) {
+    stop("cut-point values can't be `NA`.", call. = FALSE)
+  }
+
+  n_cutpts <- length(x)
+  if (n_cutpts %notin% 1:2) {
+    stop(
+      "Number of cut-points must be either one or two. Length of `cutpts` is ",
+      n_cutpts,
+      call. = FALSE
+    )
+  }
+
+  direction <- match.arg(direction)
+  attr(x, "direction") <- direction
+  structure(x, class = "cutpts")
+}
+
+is_cutpts <- function(x) inherits(x, "cutpts")
+
 #' @export
-cutpts <- function(cutpt_id) {
-  cutpoints <- cutpoints()
+print.cutpts <- function(x, ...) {
+  dir <- attr(x, "direction")
+  cps <- unclass(x)
+  n <- length(cps)
 
-  if (missing(cutpt_id))
-    return(cutpoints)
+  plus <- cli::col_red("(+)")
+  tilde <- cli::col_yellow("(~)")
+  minus <- cli::col_green("(-)")
 
+  if (n == 1L) {
+    cp1 <- format(cps[1], trim = TRUE)
+    if (dir == "increasing") {
+      cat(minus, "<", cp1, "<=", plus, "\n")
+    } else {
+      cat(plus, "<=", cp1, "<", minus, "\n")
+    }
+  } else {
+    cp1 <- format(cps[1], trim = TRUE)
+    cp2 <- format(cps[2], trim = TRUE)
+    if (dir == "increasing") {
+      cat(minus, "<", cp1, "<=" , tilde, "<", cp2, "<=", plus, "\n")
+    } else {
+      cat(plus, "<=", cp1, "<", tilde, "<=", cp2, "<", minus, "\n")
+    }
+  }
+
+  invisible(x)
+}
+
+cutpts_from_id <- function(cutpt_id) {
   if (isFALSE(is.character(cutpt_id))) {
     stop("`cutpt_id` must be a character vector.")
   }
@@ -56,11 +117,31 @@ cutpts <- function(cutpt_id) {
          ".")
   }
 
+  cutpoints <- cutpoints()
   if (cutpt_id %notin% cutpoints$cutpt_id) {
     stop("`cutpt_id` does not match any cut-point identifier.")
   }
 
-  cutpoints |>
+  cutpts <-
+    cutpoints |>
     dplyr::filter(cutpt_id == !!cutpt_id) |>
-    dplyr::pull("cutpoints")
+    dplyr::select(dplyr::all_of(c("cutpoints", "direction")))
+
+  new_cutpts(x = unlist(cutpts$cutpoints), direction = cutpts$direction)
+}
+
+#' @rdname cutpoints
+#' @export
+cutpts <- function(x,
+                   direction = c("increasing", "decreasing")) {
+  if (isFALSE(is.character(x) || is.numeric(x))) {
+    stop("`x` must be a cut-point id or a numeric vector of cut-point values.")
+  }
+
+  if (isTRUE(is.character(x))) {
+    cutpts_from_id(cutpt_id = x)
+  } else {
+    direction <- match.arg(direction)
+    new_cutpts(x = x, direction = direction)
+  }
 }
