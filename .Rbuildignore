@@ -11,3 +11,4 @@
 ^vignettes/articles$
 ^data-raw$
 ^assay-docs$
+^cutpts-docs$

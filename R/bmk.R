@@ -86,6 +86,19 @@
 # }
 
 #— 1. Class constructor + tester ————————————————————————————————
+
+#' Biomarker constructor
+#'
+#' [bmk()] generates a biomarker-classed vector (`bmk`).
+#'
+#' @param x A character vector with values `"-"`, `"~"` or `"+"`.
+#'
+#' @returns A vector classed `bmk`.
+#'
+#' @examples
+#' bmk(c("-", "~", "+", NA))
+#'
+#' @export
 bmk <- function(x = character()) {
 
   if (is_bmk(x)) return(x)

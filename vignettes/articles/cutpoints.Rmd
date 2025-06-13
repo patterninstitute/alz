@@ -1,0 +1,22 @@
+---
+title: "Biomarker cut-points"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(alz)
+```
+
+Biomarker cut-points are key parameters that provide a simple and pragmatic
+approach to translating raw biomarker measurements into positivity results
+that are, expectedly, associated with biological or clinical significance.
+
+Typically, biomarker measurements will be associated with biological or clinical
+significance in a monotonically pattern, either increasing or decreasingly, e.g.
+increasing levels of total-tau protein can be indicative of tau proteinopathy,
+whereas Aβ proteinopathy is indicated by decreasing levels of Aβ42.
+
+
