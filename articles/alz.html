@@ -42,7 +42,8 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/history.html">Redefining Alzheimer's: From Symptoms to Biomarkers</a></li>
+<li><a class="dropdown-item" href="../articles/cutpoints.html">Biomarker cut-points</a></li>
+    <li><a class="dropdown-item" href="../articles/history.html">Redefining Alzheimer's: From Symptoms to Biomarkers</a></li>
   </ul>
 </li>
       </ul>
@@ -147,17 +148,20 @@ categorical levels — such as negative or positive. It includes:</p>
 published or validated rules.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/cutpoints.html">cutpoints</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 8 × 9</span></span></span>
-<span><span class="co">#&gt;   cutpt_id   bmk_id cutpoints unit  direction assay_id intended_use source notes</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> ab42-csf-… ab42   <span style="color: #949494;">&lt;dbl [1]&gt;</span> pg/mL decreasi… elecsys… research     10.10… Deri…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> ptau181-a… ptau1… <span style="color: #949494;">&lt;dbl [1]&gt;</span> ratio increasi… elecsys… research     10.10… Deri…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> ttau-ab42… ttau_… <span style="color: #949494;">&lt;dbl [1]&gt;</span> ratio increasi… elecsys… research     10.10… Deri…</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ab42-csf-… ab42   <span style="color: #949494;">&lt;dbl [1]&gt;</span> pg/mL decreasi… elecsys… research     10.10… <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> ptau181-a… ptau1… <span style="color: #949494;">&lt;dbl [1]&gt;</span> ratio increasi… elecsys… research     10.10… <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> ttau-ab42… ttau_… <span style="color: #949494;">&lt;dbl [1]&gt;</span> ratio increasi… elecsys… research     10.10… <span style="color: #BB0000;">NA</span>   </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> ab42-inno… ab42   <span style="color: #949494;">&lt;dbl [1]&gt;</span> <span style="color: #BB0000;">NA</span>    increasi… innotes… diagnosis    PMID:… CSF …</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span> ptau181-e… ptau1… <span style="color: #949494;">&lt;dbl [1]&gt;</span> <span style="color: #BB0000;">NA</span>    increasi… elecsys… diagnosis    PMID:… Elec…</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 11 × 9</span></span></span>
+<span><span class="co">#&gt;    cutpt_id  bmk_id cutpoints unit  direction assay_id intended_use source notes</span></span>
+<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;list&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> ab42-csf… ab42   <span style="color: #949494;">&lt;dbl [1]&gt;</span> pg/mL decreasi… elecsys… research     UPENN… Meth…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> ptau181-… ptau1… <span style="color: #949494;">&lt;dbl [1]&gt;</span> ratio increasi… elecsys… research     UPENN… Meth…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> ab42-ab4… ab42_… <span style="color: #949494;">&lt;dbl [1]&gt;</span> ratio decreasi… elecsys… research     UPENN… Meth…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> ab42-csf… ab42   <span style="color: #949494;">&lt;dbl [1]&gt;</span> pg/mL decreasi… elecsys… research     10.10… Deri…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> ptau181-… ptau1… <span style="color: #949494;">&lt;dbl [1]&gt;</span> ratio increasi… elecsys… research     10.10… Deri…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> ttau-ab4… ttau_… <span style="color: #949494;">&lt;dbl [1]&gt;</span> ratio increasi… elecsys… research     10.10… Deri…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> ab42-csf… ab42   <span style="color: #949494;">&lt;dbl [1]&gt;</span> pg/mL decreasi… elecsys… research     10.10… <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> ptau181-… ptau1… <span style="color: #949494;">&lt;dbl [1]&gt;</span> ratio increasi… elecsys… research     10.10… <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> ttau-ab4… ttau_… <span style="color: #949494;">&lt;dbl [1]&gt;</span> ratio increasi… elecsys… research     10.10… <span style="color: #BB0000;">NA</span>   </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> ab42-inn… ab42   <span style="color: #949494;">&lt;dbl [1]&gt;</span> <span style="color: #BB0000;">NA</span>    increasi… innotes… diagnosis    PMID:… CSF …</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> ptau181-… ptau1… <span style="color: #949494;">&lt;dbl [1]&gt;</span> <span style="color: #BB0000;">NA</span>    increasi… elecsys… diagnosis    PMID:… Elec…</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="biomarkers">Biomarkers<a class="anchor" aria-label="anchor" href="#biomarkers"></a>
