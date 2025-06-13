@@ -193,7 +193,20 @@ Ops.bmk <- function(e1, e2 = NULL) {
     return(bmk(out))
   }
 
-  # Only "&" or "|" supported
+  # Comparison operators
+  if (op %in% c("==", "!=")) {
+    if (!is_bmk(e2)) {
+      e2 <- bmk(e2)
+    }
+    x2 <- as.character(e2)
+    result <- switch(op,
+                     "==" = x1 == x2,
+                     "!=" = x1 != x2
+    )
+    return(result)
+  }
+
+  # Logical operators
   if (!(op %in% c("&", "|"))) {
     stop("Operator `", op, "` not supported for `bmk`", call. = FALSE)
   }
@@ -217,3 +230,4 @@ Ops.bmk <- function(e1, e2 = NULL) {
 
   bmk(out_chr)
 }
+
